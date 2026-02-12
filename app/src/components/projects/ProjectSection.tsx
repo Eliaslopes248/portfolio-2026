@@ -174,7 +174,7 @@ export default function ProjectSection() {
             {/* filter 1 */}
             <div className="flex max-w-[900px] flex-col gap-4">
             <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Filter by Classification</label>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex w-[94%] flex-wrap gap-3">
               {projTypes.length > 0 &&
                 projTypes.map((t, i) => {
                   return (
@@ -193,7 +193,7 @@ export default function ProjectSection() {
             {/* filter 2 */}
             <div className="flex max-w-[900px] flex-col gap-4">
             <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Filter by Technology</label>
-            <div className="flex flex-wrap gap-3 sm:p-[20px] md:p-0">
+            <div className="flex w-[94%] flex-wrap gap-3 sm:p-[20px] md:p-0">
             {tags.length > 0 &&
                 tags.map((t, i) => {
                   return (
