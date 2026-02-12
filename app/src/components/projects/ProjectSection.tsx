@@ -167,7 +167,6 @@ export default function ProjectSection() {
   }
 
   return (
-    
     <div className="w-screen flex-1">
         {/* filter parent */}
         <div className="mb-12 space-y-6">

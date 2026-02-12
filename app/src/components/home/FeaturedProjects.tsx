@@ -5,15 +5,16 @@ import { useLocalStorage }      from 'usehooks-ts'
 
 /** type for project schema */
 type projectType = {
-  project_name: string // name of project
-  project_type: string // WEB APP, CLI TOOL , CLOUD INFRA, OS, KERNEL DRIVER
-  project_desc: string // summary of project
-  project_thumbnail: string | null | any // image thumbnail
-  tags: string | string[] // json array from SQL (stringified) or parsed array
-  github: string | null // github link for source code
-  showcase_type: string // DEMO or LIVE
-  showcase_link: string | null // link to demo video or real project
-  propriotary: string // PUBLIC or PROPRIETARY
+  project_name:       string // name of project
+  project_type:       string // WEB APP, CLI TOOL , CLOUD INFRA, OS, KERNEL DRIVER
+  project_desc:       string // summary of project
+  project_thumbnail:  string | null | any // image thumbnail
+  tags:               string | string[] // json array from SQL (stringified) or parsed array
+  github:             string | null // github link for source code
+  showcase_type:      string // DEMO or LIVE
+  showcase_link:      string | null // link to demo video or real project
+  propriotary:        string // PUBLIC or PROPRIETARY
+  featured:           boolean | null
 }
 
 /** featured projects data */
@@ -30,6 +31,7 @@ const FEATURED_PROJECTS: projectType[] = [
     showcase_type: 'Live',
     showcase_link: 'https://boilr-oudyisdf0-eliaslopes-projects.vercel.app/',
     propriotary: 'PUBLIC',
+    featured: true
   },
   {
     project_name: 'The D.R.E.A.M.S Collective',
@@ -43,6 +45,7 @@ const FEATURED_PROJECTS: projectType[] = [
     showcase_type: 'Live',
     showcase_link: 'www.thedreamscollective.org',
     propriotary: 'PUBLIC',
+    featured: true
   },
   {
     project_name: 'Gate City Gigs',
@@ -56,6 +59,7 @@ const FEATURED_PROJECTS: projectType[] = [
     showcase_type: 'Demo',
     showcase_link: '#',
     propriotary: 'PUBLIC',
+    featured: true
   },
 ]
 
@@ -101,22 +105,27 @@ export default function FeaturedProjects() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects && projects.length > 0
-            ? projects.map((project) => (
-                <ProjectCard
-                  key={project.project_name}
-                  project={{
-                    project_name: project.project_name,
-                    project_type: project.project_type,
-                    project_desc: project.project_desc,
-                    project_thumbnail: project.project_thumbnail,
-                    tags: project.tags,
-                    github: project.github,
-                    showcase_type: project.showcase_type,
-                    showcase_link: project.showcase_link,
-                    propriotary: project.propriotary,
-                  }}
-                />
-              ))
+            ? (() => {
+                const featured = projects.filter((p) => p.featured === true);
+                const toShow = featured.length > 0 ? featured.slice(0, 3) : projects.slice(0, 3);
+                return toShow.map((project) => (
+                  <ProjectCard
+                    key={project.project_name}
+                    project={{
+                      project_name: project.project_name,
+                      project_type: project.project_type,
+                      project_desc: project.project_desc,
+                      project_thumbnail: project.project_thumbnail,
+                      tags: project.tags,
+                      github: project.github,
+                      showcase_type: project.showcase_type,
+                      showcase_link: project.showcase_link,
+                      propriotary: project.propriotary,
+                      featured: project.featured ?? null,
+                    }}
+                  />
+                ));
+              })()
             : FEATURED_PROJECTS.map((project) => (
                 <ProjectCard
                   key={project.project_name}
@@ -130,6 +139,7 @@ export default function FeaturedProjects() {
                     showcase_type: project.showcase_type,
                     showcase_link: project.showcase_link,
                     propriotary: project.propriotary,
+                    featured: project.featured ?? null,
                   }}
                 />
               ))}

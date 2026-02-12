@@ -8,7 +8,8 @@ export type projectType = {
     github: string | null // github link for source code
     showcase_type: string // DEMO or LIVE
     showcase_link: string | null // link to demo video or real project
-    propriotary: string // PUBLIC or PROPRIETARY
+    propriotary: string, // PUBLIC or PROPRIETARY
+    featured: boolean | null
   }
 
 export default function ProjectCard({ project }: { project: projectType }) {
