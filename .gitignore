@@ -1,0 +1,4 @@
+# ignore .env files
+/app/.env
+/app/.env.production
+

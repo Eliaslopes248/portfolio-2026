@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elias Lopes | Solutions Architect &amp; Systems Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Styles: for React use app/src/index.css (root variables + same classes) -->
+    <style type="text/tailwindcss">
+      :root { --accent: #10b981; --bg-dark: #0a0a0a; --surface: #171717; --glass: rgba(23, 23, 23, 0.7); }
+      .glass { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+      .glass-card { background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+      .glass-card:hover { background: rgba(255,255,255,0.07); border-color: var(--accent); transform: translateY(-4px); }
+      .text-gradient { background: linear-gradient(135deg,#fff 0%,#9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .nav-link { position: relative; transition: color 0.3s ease; }
+      .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s ease; }
+      .nav-link:hover::after { width: 100%; }
+      .skill-chip { border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); transition: all 0.3s ease; }
+      .skill-chip:hover { border-color: var(--accent); color: var(--accent); }
+      @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      .animate-marquee { animation: marquee 30s linear infinite; }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body className="selection:bg-emerald-500/30 selection:text-emerald-400">
+    <!-- PageLayout start -->
+    <!-- Nav start -->
+    <nav className="fixed top-0 w-full z-50 glass border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <div className="text-xl font-bold tracking-tighter text-white">
+          EL<span className="text-[var(--accent)]">.</span>
+        </div>
+        <div className="hidden md:flex items-center gap-10">
+          <a className="nav-link text-sm font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#about">About</a>
+          <a className="nav-link text-sm font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#skills">Excellence</a>
+          <a className="nav-link text-sm font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#projects">Architecture</a>
+          <a className="px-5 py-2 border border-emerald-500/30 text-emerald-400 text-xs font-bold tracking-widest uppercase hover:bg-emerald-500/10 transition-colors" href="#">Resume</a>
+        </div>
+        <button className="md:hidden text-white" type="button">
+          <span className="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </nav>
+    <!-- Nav end -->
+
+    <!-- HeroSection start -->
+    <section className="relative min-h-screen flex flex-col md:flex-row items-stretch pt-20">
+      <div className="flex-1 flex flex-col justify-center px-6 lg:px-24 py-12 md:py-0 border-r border-white/5">
+        <div className="space-y-6 max-w-2xl">
+          <div className="flex items-center gap-4">
+            <span className="h-px w-12 bg-emerald-500"></span>
+            <span className="text-emerald-500 text-xs font-bold tracking-[0.3em] uppercase">Based in NC &amp; CA</span>
+          </div>
+          <h1 className="text-5xl lg:text-7xl font-light tracking-tight leading-[1.1]">
+            Elias Lopes <br />
+            <span className="font-serif italic text-white/40">Solutions Architect</span> <br />
+            <span className="text-gradient">&amp; Systems Engineer</span>
+          </h1>
+          <p className="text-lg text-slate-400 leading-relaxed font-light max-w-lg">
+            Designing resilient, high-performance distributed systems. Bridging the gap between hardware efficiency and cloud scalability with architectural precision.
+          </p>
+          <div className="pt-8 flex flex-wrap gap-6">
+            <a className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none font-bold text-sm tracking-widest uppercase hover:bg-emerald-500 hover:text-white transition-all duration-300" href="#projects">
+              View Projects
+              <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+            <a className="flex items-center gap-3 border border-white/10 px-8 py-4 rounded-none font-bold text-sm tracking-widest uppercase hover:bg-white/5 transition-all" href="#contact">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 relative overflow-hidden bg-slate-900">
+        <img
+          alt="Elias Lopes"
+          className="absolute inset-0 w-full h-full object-cover grayscale contrast-125 opacity-70 hover:grayscale-0 transition-all duration-1000"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc-LPFNvo_6_wPtk-r54oLXYcxBT_cLaj-mFJLWhP3ztJLPaVu_rNh3uqylJCPToMIicgjiFcj55Hi5Rk9Rd63y1BSZq8XoVutmnbvqspVI9RutCsjbH8TvYAM_BB1o1MAi2KV9YAxFJokeLXHiVcj2-kwI9oKPKwp6quI1gHU08itjbl8KrFncAwdqqJ1mn3c7MibhbE7i7uEvUT4oZdi3HReMaK8GosrAJpfovd8lp8UZ_8m6ZqAsgcPhtL4-1VTlZqZQELr8vs"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent md:bg-gradient-to-r md:from-[#0a0a0a] md:to-transparent"></div>
+      </div>
+    </section>
+    <!-- HeroSection end -->
+
+    <!-- AboutSection start -->
+    <section className="py-32 border-b border-white/5" id="about">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+          <div className="lg:col-span-4">
+            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-emerald-500 mb-4">Philosophy</h2>
+            <p className="text-3xl font-serif italic leading-snug">"Architecture is not just about structure, but about the flow of logic through silicon and cloud."</p>
+          </div>
+          <div className="lg:col-span-8 space-y-8 text-slate-400 font-light text-xl leading-relaxed">
+            <p>
+              Currently pursuing Computer Science at <span className="text-white font-medium">North Carolina A&amp;T</span> with a 3.93 GPA. My technical foundation is built on the intersection of low-level systems programming and modern cloud infrastructure.
+            </p>
+            <p>
+              Having architected tools like <span className="text-white font-medium">Boilr CLI</span> and contributed to performance engineering at <span className="text-white font-medium">NVIDIA</span>, I specialize in building software that is as aesthetically sound in its code as it is functional in production.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- AboutSection end -->
+
+    <!-- SkillsSection start -->
+    <section className="py-24 bg-zinc-950" id="skills">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-emerald-500 mb-4">Stack &amp; Tools</h2>
+            <h3 className="text-4xl font-light tracking-tight">Engineered for Performance.</h3>
+          </div>
+          <p className="text-slate-500 text-sm max-w-xs">A curated selection of technologies I utilize to build scalable and efficient solutions.</p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 overflow-hidden">
+        <div className="flex animate-marquee gap-4 whitespace-nowrap px-4">
+          <div className="flex gap-4 items-center">
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="AWS" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB97J44D_HhEwy38I9ojbhzZ_CbIVyRX4Mv4qLyxwoDDjc-WJnXhx9ley323bqDSZxGMzpMs40P4Vf-WTi6GpgV_ZROdI47qO92jTMq0z-XIBdZ0G3HK58o2ZvKKbPMSJ7ZATTY7OKvo9P1iqMWHl7qST0wPU2OX4eG_yWw3-4hC2OkeAXVeytJST1TQ8eatd3n4CpEudTR6C4yfRd3VxiakEoy2E5t-XfLhJMPWxfsVnl5z87LYTt7igR2l6o2qoEF5LsQctlg0xw" />
+              <span className="text-sm font-bold tracking-widest uppercase">AWS Cloud</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="Python" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV48oKXbE7YSePukJArUGYTcro40vDsDm6L3GJDaumx1UiYcPLoL64jgpEllQim62vol3SYK0OGzIuYQ5kH57upMehbdkbxkvgt2ZKB9Yqd62c48II7UdFpbhK74r5wWZFu9rCNCNq5TVfA5hrlshGrvmmcNJ-qJexeGATHBwoJL4o-8AwfchgHQlykywee1OkoRbAiqQyK_icDn3lIKM3mhrZpD-o-SJ7xzRSnst9nlPjzjfwMSA_fbu6SeNvSW_juybwABa8ltg" />
+              <span className="text-sm font-bold tracking-widest uppercase">Python</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="C++" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Dg7Qc3U1GtMvvTgs4yI9hn5hDd8-85AQU-kMCDrNsC7FhYjThxNN-FX4WZvG7iLSlQzrsWxG-NnPCjwUb2ZL3Gc8qOURvD9eT4UBe0lHnZupM2tVM6I9et1B9EABU0h4AybicfD2Q33CGdutXClNaSuIQqHmrtIrztVm9oElhWrnQSJnTKQZlR0CNLRdkwyzlTQkrQyMp3npfpLv_7QaPMKuBFFsT4GldfayGIhx3E9zyKDLfmcT1jry2BlUqGfJSENYmNGBVh8" />
+              <span className="text-sm font-bold tracking-widest uppercase">C++ / Systems</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="Kubernetes" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0aqS-Zzgnt_e7fEH18RigW54epkRUiKgUYozTKprf9BfnAxJsohQZgJRWm3CFhKBs6kZfcC_iuxck-nrTixEzT-96SeaXn49IRi_Z6lUN6IxR2ktpIAZOd8fdP4iPxEPVVddFVMKV2n2ZRwH3MiS2avyj0VIlEwZ_yLjx-UtoPosz8f3MUyNTzzl5uwHAnZeam9Ov684zAUCvXM8YsC6_XOKhxp5jE3oggfCNusdaPZ9xU9ILzW3vipX-iBeTmaQ1vaIGXur8Qgw" />
+              <span className="text-sm font-bold tracking-widest uppercase">Kubernetes</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="Docker" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBv5L73OtaqVm-BmLVREtC05rNjshn0y3os6L2ekXck0MH2i-SSWCYHFShFBJGPwvS1eMzf5iKfRZq6PiKHGYHpluui3-N7gG89SxDyQuU_Sc28dHKTweltTme5oeoe6W0GfnZ6gRnSb5iFfpAGvZZhozRp7W7MxiJoJ1YULhApHeN-Jba7o1aQRfb3PwGkomzTMuUPxK2rcOXk0PFIoxCIgEclhh9nn1MeWoQ9bdmMvI-GZDDxRlHgLKmXxERecpubi_2zUxvPWc" />
+              <span className="text-sm font-bold tracking-widest uppercase">Docker</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="AWS" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkBya-fAik15IwJBX5QdGt2GgY9UMVaozSyPIQOthB1GUGaUlImwpa8KhwVJEWO1-ECJZ9QmgUj80Gn4lhw_bHZ8RBGOt2mTX3utDbsIlC1hlxeZ3GjWUtwqwpXF95wU8iQRn7MArePbLFY_waEjwwdeYj23qAstyzsWF3KHDXweWhZy7QyhZzx5jxebUlxt18v-2jd1obCRF7JcZrKt6KI8g9J0sBmNz9NdWDVwtjy9oDZJq2GnTktKqcoNHk2mtCb65vwBb8kdc" />
+              <span className="text-sm font-bold tracking-widest uppercase">AWS Cloud</span>
+            </div>
+            <div className="skill-chip px-8 py-6 flex items-center gap-4 grayscale hover:grayscale-0">
+              <img alt="Python" className="w-10 h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvpleSlDIRXbuYxbG1c5ifM4hO4JlxBMjroIHhfXhdw8GOBsf6CtnOVL4hmIuzDLfMxO-kSq6ggK2ZSGk4N0Au9Gj9Kzz2YvxATD3gDjmVqPu0QMm7TNRZ25QntYP0HmU9qRV1O99jhu8zJxDtKp4xrDyDTxWCIG-uXnPcMRIMCioQYGecX6V7xMXQNNLOHZ-qrCSmBtlCymp7V-dAo9clJ6LeskU6yrff4tyTl_-SCRbiPGCo35KsaksJHt_y4CLZap5IxR8wEeA" />
+              <span className="text-sm font-bold tracking-widest uppercase">Python</span>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-8">
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="TS" className="w-8 h-8 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfUmfTu55LNwYswXz9vkOFzp8Ob0QbuysWRRbgspM5EtR0Ix-lZisBzklsFz7fTBRNQjJFVJt8CgU-fSoFwZLa5_5YQK8ml56Odm0yJe_xE0gYlHRU0f25_n4VUB9vt6zzsNP4btzbTJ0PjbNKVeVB9CBugBqHp_EFOt0BlP2Q2mkkKyrtTaadOhgNfbTBpQ7zdYT20RB1QAvPlO9AWEGblGOn_xPHFtdpIpM-M5gYoE6jqd0xr8w5-fhK5D-xGvLxfZDCsSeP8pQ" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">TypeScript</span>
+          </div>
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="React" className="w-8 h-8 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf_hqq6k4roK9YvjMeg9aRUso3TmeksUxrjsSEZTIcLRsXlZo1ylxQcB5V7GXkG-TZdOOSaBoS_2GspAnAFEElS3SNXNQHLEAEtb1I6FG3xI3XmZtNQEtb4OySp8lIfJMJBvnkxcPwaNJ4AC_imZJNZogtYyd2AGFz7taKby22EJltl7La33YgSyCGh8oYxDGoxb5P21_Iwpsu0Z6DwCxRDj1G0EOpfQI7dohniKB_t3jq_8yRsLuls48tvmlM9lQjO37eEX2eZpI" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">React.js</span>
+          </div>
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="Node" className="w-8 h-8 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnnM6GnUJH5YCy4Jf79vSZaDvTEJCWqW-WiD8YLeliUq9_3EgOtrQp-PWReLoRw1Z-3Qb6JO6poraZFd1ojsmSSu7cAGOaGxsMmw2Gxtw58TKH6LTtZrmO8HtFKmVK9v4Sqhb7aP6hP4oDuCDBJUk_bGCoXg45SeeqV4aDTAgt05to_A3S7Xh-3iYBY8Sb1rQs_sh5J_ojLIsJjkYVh7aPqAIxjm-qUXGLX-viL40B1OVaq0m4EfwJK71uIEu82Uz6THOt8ZTmwK4" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">Node.js</span>
+          </div>
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="SQL" className="w-8 h-8 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlsBAyj_Myc_kuNI41dNTnVDZ27_5U_hSZzkJMoPPJpVOQ0fvun_-rGYZgNOGjvQxotHcSzYGprsp2zNKvGa4fukdDrAQA47KWcHb8vuhvOZB0bAUskND3fDFyuDlo3RCY-Yd1KwaIu7SmyXNEJYPfOc1BKvKhq3eyxGLScBfl8Du3aA1GqHqojqDWLNPoVNfe1d_S76jKc7DE8XJXWPuP478ojob9KXGOKprGhmbqVsYPkdabPU4zyk2fb8qyIuALUPQq-9Zi8L4" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">PostgreSQL</span>
+          </div>
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="Git" className="w-8 h-8 opacity-50 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABGmb9p5jEVyQUwmpGJ6Fw-XkXQtlRqMj-KdrPwwHW3EgTjiJCUiAYOU2sZ5Dbp4g3CjcCyu9U_Fwn2wnstG7vEVOmiDFavJ7q0cR61FxL2i_apbjg9oNJICyxvD9YQOSU4zpFD8B5J6gAHD8BPx2p-f6OVUFRBY9n0v9uy0dxRbZNc5wl1lKtpBv_z64jlbaPIhKG7JOEadFBX4JHj4YMIYN7Df0WIw0LpH0QFu0l_d0ZLR4GRFrnH8AUayktc62M7FxQenT3NPw" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">Git Ops</span>
+          </div>
+          <div className="skill-chip p-6 flex flex-col items-center gap-3">
+            <img alt="Linux" className="w-8 h-8 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV6eiGX1EMX4z2t4JWXvM220kvxWzVmoK1-XGHO-m664btcopqfADKTvdE4Kqk6hFX0wI2HCq3wEmPrWaUogRjSjEmA9nKkuk82Tu4PiP7T3bYbp4npEd6fJxm8NGFbKDb1w_mKh_cdTn7OfKa4nl9yufa0-F_b7z8P2ZxEoN_RE7dUy5c2BCmjIXDi4Ry_OLqUe_BMd0_uWBehbe-cJ25sY4Rzo-K6zDHkDDcLoJLyvx-iKuoeKEcX3DiCrta5v1fLXRX88E25pA" />
+            <span className="text-[10px] font-bold tracking-tighter uppercase opacity-50">Linux Kernel</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SkillsSection end -->
+
+    <!-- ProjectsSection start -->
+    <section className="py-32 relative overflow-hidden" id="projects">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="mb-20">
+          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-emerald-500 mb-4">Portfolio</h2>
+          <h3 className="text-5xl font-light tracking-tight text-white">Featured Architecture.</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- ProjectCard start -->
+          <div className="glass-card group flex flex-col h-full">
+            <div className="relative overflow-hidden aspect-video">
+              <img
+                alt="Boilr CLI"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4KzXVOBKoMpIYV2nK27m3cORqKWpyxc_8uSiacGsHyOsq2NTBq4NK9vyj5YaO1ySZj4wbVSSEpCbPq_UsSZbdaIY6LyC7Olr77w_VsDjyr1wf5NNKGT1EGEbxSfoLcVyH5bsHl9S-hN1Hi-BDnWz7xBvoQQ6JCtgiCW3PcMDdbDYLaOCXenXAPs06lOjRYJv4lT0LuZk6FVWKDl9BOnzd2-XYGOjhWt8YlHwjVcpiM-DfSovjyiLmadww_J2pBk-KAtjSDF7Xuco"
+              />
+              <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div className="p-8 flex flex-col flex-grow">
+              <div className="flex gap-2 mb-4">
+                <span className="text-[10px] font-bold px-2 py-1 border border-emerald-500/20 text-emerald-400 uppercase">CLI Tool</span>
+                <span className="text-[10px] font-bold px-2 py-1 border border-white/10 text-slate-400 uppercase">Go</span>
+              </div>
+              <h4 className="text-2xl font-light text-white mb-3">Boilr Open Source CLI</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                A high-performance command-line interface designed to automate repository scaffolding and workflow orchestration for enterprise DevOps.
+              </p>
+              <div className="flex items-center gap-6 pt-6 border-t border-white/5">
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">code</span> GitHub
+                </a>
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">open_in_new</span> Live
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ProjectCard end -->
+          <!-- ProjectCard start -->
+          <div className="glass-card group flex flex-col h-full">
+            <div className="relative overflow-hidden aspect-video">
+              <img
+                alt="Gate City Gigs"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYyylHGcSVJKIxjR04H7ymieCleYAg7GiN_LutItpTN6CPl6Fl5WJ8sYOMFtPi33J-dLV0LNkJy5sNga6bhMetny3Va_5WT8xo_3Yg9EUTDotcjImfPcHKTA3l7g52_HdpsGgy_FSM0_FSFJy6_Fdjc0x8yYRQJrEeeWkgMSZtE4HSPsOSIs_urdaHYau1F8ciUNBmKzBFhdOt2GOPSPg2DIMDOADeY_nyF1XaZ-WsXQ2ZkIiaWkPUezGdgb6VyUe8LzOumu2wmM8"
+              />
+              <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div className="p-8 flex flex-col flex-grow">
+              <div className="flex gap-2 mb-4">
+                <span className="text-[10px] font-bold px-2 py-1 border border-emerald-500/20 text-emerald-400 uppercase">Web App</span>
+                <span className="text-[10px] font-bold px-2 py-1 border border-white/10 text-slate-400 uppercase">Next.js</span>
+              </div>
+              <h4 className="text-2xl font-light text-white mb-3">Gate City Gigs</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                Won 1st Place at BE SMART Hackathon. A local gig-economy platform architected with AWS Lambda and real-time database synchronization.
+              </p>
+              <div className="flex items-center gap-6 pt-6 border-t border-white/5">
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">code</span> GitHub
+                </a>
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">open_in_new</span> Demo
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ProjectCard end -->
+          <!-- ProjectCard start -->
+          <div className="glass-card group flex flex-col h-full">
+            <div className="relative overflow-hidden aspect-video">
+              <img
+                alt="D.R.E.A.M.S"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1BEMBclx7sC7Xw4ZfiyEeMLhfx76jpUqGrh15M3N_qSuFuwDnBCxP2gzabQA6xV649Zytr2ka0JgDxcVExiHqXrzONF5YNdwDyqyedXbjSN2tCXMn4vF_0-qZGJgVhOwgaxZoAgArbjR0tBhmZIZtwF19tTTW16iSlrui9dTwfxTJyVZCKUJ9qXg4TLIFI5TE508PTrJp7nkEtHfpHJHgJnvGbYzdeo9C1t8HsmnU7NYSRonnTBBj67obTBXAUqZ2md4hmJkIoZw"
+              />
+              <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div className="p-8 flex flex-col flex-grow">
+              <div className="flex gap-2 mb-4">
+                <span className="text-[10px] font-bold px-2 py-1 border border-emerald-500/20 text-emerald-400 uppercase">Cloud Arch</span>
+                <span className="text-[10px] font-bold px-2 py-1 border border-white/10 text-slate-400 uppercase">AWS</span>
+              </div>
+              <h4 className="text-2xl font-light text-white mb-3">D.R.E.A.M.S Collective</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                Enterprise-grade web presence for an academic collective, featuring a headless CMS integration and automated deployment pipelines via GitHub Actions.
+              </p>
+              <div className="flex items-center gap-6 pt-6 border-t border-white/5">
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">code</span> GitHub
+                </a>
+                <a className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-white hover:text-emerald-400 transition-colors" href="#">
+                  <span className="material-symbols-outlined text-lg">open_in_new</span> Live
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ProjectCard end -->
+        </div>
+      </div>
+      <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 -z-0"></div>
+    </section>
+    <!-- ProjectsSection end -->
+
+    <!-- Footer start -->
+    <footer className="bg-zinc-950 py-24 border-t border-white/5" id="contact">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <h2 className="text-6xl font-light text-gradient mb-8 leading-tight">
+              Let's build the <br />
+              future infrastructure.
+            </h2>
+            <p className="text-slate-400 text-lg mb-12 max-w-md">Currently seeking 2025 Summer Internships in Systems Programming or Solutions Architecture.</p>
+            <div className="flex gap-8">
+              <a className="text-white hover:text-emerald-400 transition-colors flex items-center gap-2 font-bold uppercase text-xs tracking-widest" href="mailto:ealopes@aggies.ncat.edu">
+                <span className="material-symbols-outlined">mail</span> Email Me
+              </a>
+              <a className="text-white hover:text-emerald-400 transition-colors flex items-center gap-2 font-bold uppercase text-xs tracking-widest" href="#">
+                <span className="material-symbols-outlined">link</span> LinkedIn
+              </a>
+            </div>
+          </div>
+          <div className="glass p-12 space-y-8">
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-emerald-500" for="inquiry-type">Inquiry Type</label>
+              <select id="inquiry-type" className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4">
+                <option>General Collaboration</option>
+                <option>Job Opportunity</option>
+                <option>Project Consultation</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold uppercase tracking-widest text-emerald-500" for="message">Message</label>
+              <textarea id="message" className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4 resize-none" placeholder="How can we build together?" rows="4"></textarea>
+            </div>
+            <button className="w-full bg-white text-black py-4 font-bold uppercase text-xs tracking-[0.3em] hover:bg-emerald-500 hover:text-white transition-all" type="button">
+              Send Brief
+            </button>
+          </div>
+        </div>
+        <div className="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40">
+          <div className="text-xs tracking-widest uppercase">© 2024 Elias Lopes Portfolio</div>
+          <div className="flex gap-8 text-[10px] font-bold tracking-widest uppercase">
+            <span>Greensboro, NC</span>
+            <span>Systems Architecture</span>
+            <span>Software Engineering</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer end -->
+    <!-- PageLayout end -->
+  </body>
+</html>

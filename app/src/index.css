@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ========== Design tokens (use in React components) ========== */
+:root {
+  --accent: #10b981;
+  --bg-dark: #0a0a0a;
+  --surface: #171717;
+  --glass: rgba(23, 23, 23, 0.7);
+  --text-primary: #e5e7eb;
+  --text-muted: #9ca3af;
+}
+
+/* ========== Base ========== */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+/* ========== Typography ========== */
+.font-serif {
+  font-family: "Playfair Display", serif;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== Glass / cards ========== */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+/* ========== Nav ========== */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ========== Skills / chips (home) ========== */
+.marquee-container {
+  overflow: hidden;
+  display: flex;
+  user-select: none;
+  gap: 2rem;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.skill-chip {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.skill-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ========== Projects / data table (projects page) ========== */
+.data-row {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.data-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  color: rgb(52 211 153);
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  background: rgba(16, 185, 129, 0.1);
+  color: rgb(52 211 153);
+}

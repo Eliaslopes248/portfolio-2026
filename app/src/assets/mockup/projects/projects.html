@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Catalog | Elias Lopes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <!-- Styles: for React use app/src/index.css (root variables + same classes) -->
+    <style type="text/tailwindcss">
+      :root { --accent: #10b981; --bg-dark: #0a0a0a; --surface: #171717; --glass: rgba(23, 23, 23, 0.85); }
+      .glass { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+      .text-gradient { background: linear-gradient(135deg,#fff 0%,#9ca3af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .nav-link { position: relative; transition: color 0.3s ease; }
+      .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s ease; }
+      .nav-link:hover::after { width: 100%; }
+      .data-row { transition: all 0.2s ease; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .data-row:hover { background: rgba(255,255,255,0.02); }
+      .filter-btn { padding: 0.5rem 1rem; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s ease; }
+      .filter-btn:hover { border-color: rgba(16,185,129,0.5); color: rgb(52 211 153); }
+      .filter-btn.active { border-color: var(--accent); background: rgba(16,185,129,0.1); color: rgb(52 211 153); }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body className="selection:bg-emerald-500/30 selection:text-emerald-400">
+    <!-- PageLayout start -->
+    <!-- Nav start -->
+    <nav className="fixed top-0 w-full z-50 glass border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <a className="text-xl font-bold tracking-tighter text-white" href="/">
+          EL<span className="text-[var(--accent)]">.</span>
+        </a>
+        <div className="hidden md:flex items-center gap-10">
+          <a className="nav-link text-sm font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="/">Home</a>
+          <a className="nav-link text-sm font-medium tracking-widest uppercase text-emerald-400" href="#">Catalog</a>
+          <a className="px-5 py-2 border border-emerald-500/30 text-emerald-400 text-xs font-bold tracking-widest uppercase hover:bg-emerald-500/10 transition-colors" href="#">Resume</a>
+        </div>
+        <button className="md:hidden text-white" type="button">
+          <span className="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </nav>
+    <!-- Nav end -->
+
+    <!-- Main start -->
+    <main className="pt-32 pb-24 px-6 lg:px-12 max-w-7xl mx-auto">
+      <!-- PageHeader start -->
+      <header className="mb-16">
+        <div className="flex items-center gap-4 mb-4">
+          <span className="h-px w-12 bg-emerald-500"></span>
+          <span className="text-emerald-500 text-xs font-bold tracking-[0.3em] uppercase">Architecture Index</span>
+        </div>
+        <h1 className="text-4xl lg:text-6xl font-light tracking-tight mb-6">
+          Project <span className="font-serif italic text-white/40">Data Sheet</span>
+        </h1>
+        <p className="text-slate-400 max-w-2xl font-light leading-relaxed">
+          A technical deep-dive into the architectural portfolio of Elias Lopes. Efficiently filter by technology stack, project type, or deployment environment to evaluate specific system competencies.
+        </p>
+      </header>
+      <!-- PageHeader end -->
+
+      <!-- FilterBar start -->
+      <div className="mb-12 space-y-6">
+        <div className="flex flex-col gap-4">
+          <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Filter by Classification</label>
+          <div className="flex flex-wrap gap-3">
+            <button className="filter-btn active" type="button">All Systems</button>
+            <button className="filter-btn" type="button">CLI Tools</button>
+            <button className="filter-btn" type="button">Web Platforms</button>
+            <button className="filter-btn" type="button">Cloud Arch</button>
+            <button className="filter-btn" type="button">Low Level</button>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Filter by Technology</label>
+          <div className="flex flex-wrap gap-3">
+            <button className="filter-btn" type="button">AWS</button>
+            <button className="filter-btn" type="button">Python</button>
+            <button className="filter-btn" type="button">C++</button>
+            <button className="filter-btn" type="button">Go</button>
+            <button className="filter-btn" type="button">Kubernetes</button>
+            <button className="filter-btn" type="button">React</button>
+            <button className="filter-btn" type="button">Node.js</button>
+          </div>
+        </div>
+      </div>
+      <!-- FilterBar end -->
+
+      <!-- ProjectsTable start -->
+      <div className="overflow-x-auto">
+        <div className="min-w-[1000px]">
+          <!-- TableHeader start -->
+          <div className="grid grid-cols-12 gap-4 pb-4 border-b border-white/20 px-4 text-[10px] font-bold uppercase tracking-widest text-emerald-500">
+            <div className="col-span-3">Project Name &amp; Type</div>
+            <div className="col-span-3">Stack / Technologies</div>
+            <div className="col-span-4">Technical Brief</div>
+            <div className="col-span-2 text-right">Links</div>
+          </div>
+          <!-- TableHeader end -->
+          <!-- DataRow start -->
+          <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center">
+            <div className="col-span-3">
+              <h3 className="text-lg font-medium text-white mb-1">Boilr Open Source CLI</h3>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest">CLI Tool • System Utility</span>
+            </div>
+            <div className="col-span-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Go</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">GitOps</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Shell</span>
+              </div>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm text-slate-400 font-light leading-snug">High-performance scaffolding engine for enterprise microservices. Automates repository structure and dependency injection.</p>
+            </div>
+            <div className="col-span-2 flex justify-end gap-6">
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="GitHub">
+                <span className="material-symbols-outlined text-xl">code</span>
+              </a>
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="Live Documentation">
+                <span className="material-symbols-outlined text-xl">open_in_new</span>
+              </a>
+            </div>
+          </div>
+          <!-- DataRow end -->
+          <!-- DataRow start -->
+          <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center">
+            <div className="col-span-3">
+              <h3 className="text-lg font-medium text-white mb-1">Gate City Gigs</h3>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest">Web App • Real-time Platform</span>
+            </div>
+            <div className="col-span-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Next.js</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">AWS Lambda</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">DynamoDB</span>
+              </div>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm text-slate-400 font-light leading-snug">Serverless gig-economy dashboard with real-time sync. Won 1st Place at BE SMART Hackathon for technical excellence.</p>
+            </div>
+            <div className="col-span-2 flex justify-end gap-6">
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="GitHub">
+                <span className="material-symbols-outlined text-xl">code</span>
+              </a>
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="Demo">
+                <span className="material-symbols-outlined text-xl">open_in_new</span>
+              </a>
+            </div>
+          </div>
+          <!-- DataRow end -->
+          <!-- DataRow start -->
+          <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center">
+            <div className="col-span-3">
+              <h3 className="text-lg font-medium text-white mb-1">D.R.E.A.M.S Collective</h3>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest">Cloud Arch • Content Mgmt</span>
+            </div>
+            <div className="col-span-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">AWS</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Headless CMS</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">CI/CD</span>
+              </div>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm text-slate-400 font-light leading-snug">Academic portal featuring automated deployment pipelines and highly available S3/CloudFront infrastructure.</p>
+            </div>
+            <div className="col-span-2 flex justify-end gap-6">
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="GitHub">
+                <span className="material-symbols-outlined text-xl">code</span>
+              </a>
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="Live Site">
+                <span className="material-symbols-outlined text-xl">open_in_new</span>
+              </a>
+            </div>
+          </div>
+          <!-- DataRow end -->
+          <!-- DataRow start -->
+          <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center">
+            <div className="col-span-3">
+              <h3 className="text-lg font-medium text-white mb-1">NVIDIA Perf Monitor</h3>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest">Internal Tool • Performance</span>
+            </div>
+            <div className="col-span-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">C++</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Python</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Linux</span>
+              </div>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm text-slate-400 font-light leading-snug">Low-level instrumentation tool for monitoring kernel-space metrics during GPU-intensive workloads.</p>
+            </div>
+            <div className="col-span-2 flex justify-end gap-6">
+              <span className="text-[10px] font-bold text-slate-600 italic tracking-widest">PROPRIETARY</span>
+            </div>
+          </div>
+          <!-- DataRow end -->
+          <!-- DataRow start -->
+          <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center border-b-0">
+            <div className="col-span-3">
+              <h3 className="text-lg font-medium text-white mb-1">Kubernetes Auto-Scaler</h3>
+              <span className="text-[10px] text-slate-500 uppercase tracking-widest">Cloud Arch • Infrastructure</span>
+            </div>
+            <div className="col-span-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">K8s</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Terraform</span>
+                <span className="px-2 py-0.5 border border-white/10 text-slate-300 text-[10px] font-medium">Docker</span>
+              </div>
+            </div>
+            <div className="col-span-4">
+              <p className="text-sm text-slate-400 font-light leading-snug">Custom HPA controller implementation designed for predictive scaling based on historical request patterns.</p>
+            </div>
+            <div className="col-span-2 flex justify-end gap-6">
+              <a className="text-white hover:text-emerald-400 transition-colors" href="#" title="GitHub">
+                <span className="material-symbols-outlined text-xl">code</span>
+              </a>
+            </div>
+          </div>
+          <!-- DataRow end -->
+        </div>
+      </div>
+      <!-- ProjectsTable end -->
+
+      <!-- CtaBlock start -->
+      <div className="mt-24 border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="max-w-md">
+          <h4 className="text-2xl font-light mb-4 text-white">Need a Technical Deep-Dive?</h4>
+          <p className="text-slate-400 text-sm">Download the comprehensive architectural breakdown PDF or contact me for a walkthrough of these systems.</p>
+        </div>
+        <div className="flex gap-4">
+          <a className="px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-emerald-500 hover:text-white transition-all" href="#">Download Specs</a>
+          <a className="px-8 py-4 border border-white/10 text-white text-xs font-bold tracking-widest uppercase hover:bg-white/5 transition-all" href="mailto:ealopes@aggies.ncat.edu">Schedule Sync</a>
+        </div>
+      </div>
+      <!-- CtaBlock end -->
+    </main>
+    <!-- Main end -->
+
+    <!-- Footer start -->
+    <footer className="bg-zinc-950 py-12 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40">
+        <div className="text-xs tracking-widest uppercase">© 2024 Elias Lopes Portfolio</div>
+        <div className="flex gap-8 text-[10px] font-bold tracking-widest uppercase">
+          <span>Greensboro, NC</span>
+          <span>Systems Architecture</span>
+          <span>Software Engineering</span>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer end -->
+    <!-- PageLayout end -->
+  </body>
+</html>
