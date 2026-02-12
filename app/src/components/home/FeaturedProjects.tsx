@@ -22,7 +22,7 @@ const FEATURED_PROJECTS: projectType[] = [
     project_description:
       'A high-performance command-line interface designed to automate repository scaffolding and workflow orchestration for enterprise DevOps.',
     project_thumbnail:
-      BOILR_THUMNAIL,
+      "https://vrqwsbqzliixthngwfmo.supabase.co/storage/v1/object/public/projects/boilr-thumbnail.png",
     tags: '["C++"]',
     github: '#',
     showcase_type: 'Live',
@@ -35,7 +35,7 @@ const FEATURED_PROJECTS: projectType[] = [
     project_description:
       'Enterprise-grade web presence for an academic collective, featuring a headless CMS integration and automated deployment pipelines via GitHub Actions.',
     project_thumbnail:
-      'https://media.licdn.com/dms/image/v2/D560BAQH3wba-ZfXaBA/company-logo_200_200/company-logo_200_200/0/1736889545650?e=2147483647&v=beta&t=TivYC5rHoun6xeEA2Ot9spa51V_hiYSP6HVrqawzgNk',
+      'https://vrqwsbqzliixthngwfmo.supabase.co/storage/v1/object/public/projects/dreamscollective.png',
     tags: '["AWS"]',
     github: '#',
     showcase_type: 'Live',
@@ -48,7 +48,7 @@ const FEATURED_PROJECTS: projectType[] = [
     project_description:
       'Won 1st Place at BE SMART Hackathon. A local gig-economy platform architected with AWS Lambda and real-time database synchronization.',
     project_thumbnail:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCYyylHGcSVJKIxjR04H7ymieCleYAg7GiN_LutItpTN6CPl6Fl5WJ8sYOMFtPi33J-dLV0LNkJy5sNga6bhMetny3Va_5WT8xo_3Yg9EUTDotcjImfPcHKTA3l7g52_HdpsGgy_FSM0_FSFJy6_Fdjc0x8yYRQJrEeeWkgMSZtE4HSPsOSIs_urdaHYau1F8ciUNBmKzBFhdOt2GOPSPg2DIMDOADeY_nyF1XaZ-WsXQ2ZkIiaWkPUezGdgb6VyUe8LzOumu2wmM8',
+      'https://vrqwsbqzliixthngwfmo.supabase.co/storage/v1/object/public/projects/gcgs.png',
     tags: '["React.js"]',
     github: '#',
     showcase_type: 'Demo',
