@@ -62,7 +62,7 @@ export default function NavBar() {
                 className="md:hidden overflow-hidden transition-[max-height] duration-300 ease-out"
                 style={{ maxHeight: menuOpen ? 300 : 0 }}
             >
-                <div className="w-full flex flex-col bg-black min-h-[300px] gap-12 py-6 px-6">
+                <div className="w-full justify-center flex flex-col bg-black min-h-[300px] gap-12 py-6 px-6">
                     {navOptionList.map((o, i) => (
                         <a
                             key={i}

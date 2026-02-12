@@ -115,7 +115,7 @@ export default function ProjectSection() {
     const projTags = getProjectTags(project);
 
     return (
-      <div className="data-row grid grid-cols-12 gap-4 py-8 px-4 items-center">
+      <div className="data-row grid grid-cols-12 gap-4 py-8 lg:px-4 px-16 items-center">
         <div className="col-span-3">
           <h3 className="text-lg font-medium text-white mb-1">
             {project.project_name}
@@ -214,11 +214,11 @@ export default function ProjectSection() {
         <div className="overflow-x-auto">
         <div className="min-w-[1000px] max-w-[1200px]">
             {/* <!-- TableHeader start --> */}
-            <div className="grid grid-cols-12 gap-4 pb-4 border-b border-white/20 px-4 text-[10px] font-bold uppercase tracking-widest text-emerald-500">
+            <div className="grid grid-cols-12 gap-4 pb-4 border-b border-white/20 md:px-4 px-6 text-[10px] font-bold uppercase tracking-widest text-emerald-500">
               <div className="col-span-3">Project Name &amp; Type</div>
               <div className="col-span-3">Stack / Technologies</div>
               <div className="col-span-4">Technical Brief</div>
-              <div className="col-span-2 text-right">Links</div>
+              <div className="col-span-2 text-right mr-[8vw] md:mr-[2vw] lg:mr-0">Links</div>
             </div>
 
             {/* map results here */}
@@ -237,31 +237,6 @@ export default function ProjectSection() {
 
           </div>
         </div>
-
-        {/* results */}
-        {/* <div className="mt-8 w-screen max-w-[1100px] border-white border">
-          {filteredProjects.length === 0 ? (
-            <p className="text-slate-500 text-sm">
-              No projects match the current filters.
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {filteredProjects.map((proj) => (
-                <div
-                  key={proj.project_name}
-                  className="data-row flex justify-between items-center py-3 px-2"
-                >
-                  <span className="text-sm font-medium text-white">
-                    {proj.project_name}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-widest text-slate-400">
-                    {proj.project_type}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */}
     </div>
   )
 }

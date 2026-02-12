@@ -83,7 +83,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             <div>
-            <h2 className="text-6xl font-light text-gradient mb-8 leading-tight">
+            <h2 className="md:text-6xl text-4xl font-light text-gradient mb-8 leading-tight">
                 Let's build the <br />
                 future infrastructure.
             </h2>
@@ -95,7 +95,7 @@ export default function Footer() {
                 </a>
             </div>
             </div>
-            <div className="glass p-12 space-y-8">
+            <div className="glass p-4 md:p-12 space-y-8 w-full">
             <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-emerald-500" htmlFor="inquiry-type">Inquiry Type</label>
                 <select
@@ -103,7 +103,7 @@ export default function Footer() {
                   id="inquiry-type"
                   value={formInfo.inquiry_type}
                   onChange={handleFormChange}
-                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4"
+                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-3 md:p-4"
                 >
                   <option>General Collaboration</option>
                   <option>Job Opportunity</option>
@@ -117,7 +117,7 @@ export default function Footer() {
                   name="message"
                   id="message"
                   value={formInfo.message}
-                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4 resize-none"
+                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-3 md:p-4 resize-none"
                   placeholder="How can we build together?"
                   rows={4}
                 ></textarea>
