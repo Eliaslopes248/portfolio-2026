@@ -1,0 +1,12 @@
+{
+  "//": "Vercel config for Vite + React SPA in ./app",
+  "buildCommand": "cd app && npm run build",
+  "outputDirectory": "app/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
+

@@ -21,7 +21,7 @@ export default function HeroSection() {
           scalable systems and building tools that simplify complex problems, turning low-level technology into practical, efficient solutions.
           </p>
           <div className="pt-8 flex flex-wrap gap-6">
-            <a className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none font-bold text-sm tracking-widest uppercase hover:bg-emerald-500 hover:text-white transition-all duration-300" href="#projects">
+            <a className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-none font-bold text-sm tracking-widest uppercase hover:bg-emerald-500 hover:text-white transition-all duration-300" href="/projectCatalog">
               View Projects
               <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </a>

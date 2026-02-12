@@ -5,9 +5,10 @@ export default function NavBar() {
     /** constants and types */
     type navOptions = {name:string, link:string };
     const navOptionList: navOptions[] = [
-        {name: "About" ,    link: ""},
-        {name: "Projects" , link: ""},
-        {name: "Contact" ,  link: ""},
+        { name: "Home",     link: "/" },
+        { name: "Projects", link: "/projectCatalog" },
+        // Always jump to the footer contact section on the root page
+        // { name: "Contact",  link: "/#contact" },
     ];
     /** handles menu state */
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false);

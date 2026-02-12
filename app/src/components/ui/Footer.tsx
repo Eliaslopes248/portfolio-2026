@@ -1,23 +1,63 @@
 import React, { useEffect } from 'react'
+import emailjs              from "@emailjs/browser"
+
+const SERVICE_ID: string   = import.meta.env.VITE_EMAIL_JS_SERVICE_ID   || ''
+const TEMPLATE_ID: string  = import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID  || ''
+const PUBLIC_KEY: string   = import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY   || ''
 
 export default function Footer() {
     const linkedInLink:string = "https://www.linkedin.com/in/elias-lopes-273130297/";
     /** handle email service */
-    type emailMeFormType = {inquiryType:string, message: string}
+    type emailMeFormType = { inquiry_type: string; message: string }
     /** set default for email form */
-    const [formInfo, setFormInfo] = React.useState<emailMeFormType>({inquiryType:"", message: ""});
+    const [formInfo, setFormInfo] = React.useState<emailMeFormType>({
+      inquiry_type: "General Collaboration",
+      message: "",
+    });
 
     /**
      * sends email from email service
      * @param e 
      * @returns void
      */
-    function sendInquiry(
-        e: React.MouseEvent<HTMLButtonElement>): void
-    {
+    async function sendInquiry(
+        e: React.MouseEvent<HTMLButtonElement>
+      ): Promise<void> {
         e.preventDefault();
-        /** process mail */
-    }
+
+        if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+          console.error("[EMAILJS] Missing configuration. Check environment variables.")
+          return
+        }
+
+        if (!formInfo.message.trim()) {
+          alert("Please enter a message before sending.")
+          return
+        }
+
+        try {
+          await emailjs.send(
+            SERVICE_ID,
+            TEMPLATE_ID,
+            {
+              inquiry_type: formInfo.inquiry_type,
+              message: formInfo.message,
+            },
+            {
+              publicKey: PUBLIC_KEY,
+            }
+          )
+
+          alert("Your message has been sent. Thank you!")
+          setFormInfo({
+            inquiry_type: "General Collaboration",
+            message: "",
+          })
+        } catch (error) {
+          console.error("[EMAILJS] Failed to send message", error)
+          alert("Sorry, something went wrong sending your message. Please try again.")
+        }
+      }
 
     /**
      * handles changes to form and updates formInfo
@@ -47,7 +87,7 @@ export default function Footer() {
                 Let's build the <br />
                 future infrastructure.
             </h2>
-            <p className="text-slate-400 text-lg mb-12 max-w-md">Currently seeking 2025 Summer Internships in Systems Programming or Solutions Architecture.</p>
+            <p className="text-slate-400 text-lg mb-12 max-w-md">Lets Connect.</p>
             <div className="flex gap-8">
                 
                 <a className="text-white hover:text-emerald-400 transition-colors flex items-center gap-2 font-bold uppercase text-xs tracking-widest" href={linkedInLink}>
@@ -58,15 +98,29 @@ export default function Footer() {
             <div className="glass p-12 space-y-8">
             <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-emerald-500" htmlFor="inquiry-type">Inquiry Type</label>
-                <select name="inquiryType" id="inquiry-type" onChange={handleFormChange} className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4">
-                <option>General Collaboration</option>
-                <option>Job Opportunity</option>
-                <option>Project Consultation</option>
+                <select
+                  name="inquiry_type"
+                  id="inquiry-type"
+                  value={formInfo.inquiry_type}
+                  onChange={handleFormChange}
+                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4"
+                >
+                  <option>General Collaboration</option>
+                  <option>Job Opportunity</option>
+                  <option>Project Consultation</option>
                 </select>
             </div>
             <div className="space-y-2">
                 <label className="text-[10px] font-bold uppercase tracking-widest text-emerald-500" htmlFor="message">Message</label>
-                <textarea onChange={handleFormChange} name="message" id="message" className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4 resize-none" placeholder="How can we build together?" rows={4}></textarea>
+                <textarea
+                  onChange={handleFormChange}
+                  name="message"
+                  id="message"
+                  value={formInfo.message}
+                  className="w-full bg-white/5 border border-white/10 text-white focus:border-emerald-500 rounded-none p-4 resize-none"
+                  placeholder="How can we build together?"
+                  rows={4}
+                ></textarea>
             </div>
             <button onClick={sendInquiry} className="w-full bg-white text-black py-4 font-bold uppercase text-xs tracking-[0.3em] hover:bg-emerald-500 hover:text-white transition-all" type="button">
                 Send Brief
