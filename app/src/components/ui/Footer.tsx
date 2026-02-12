@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import emailjs              from "@emailjs/browser"
+import React   from 'react'
+import emailjs from "@emailjs/browser"
 
 const SERVICE_ID: string   = import.meta.env.VITE_EMAIL_JS_SERVICE_ID   || ''
 const TEMPLATE_ID: string  = import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID  || ''

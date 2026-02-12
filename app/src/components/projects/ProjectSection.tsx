@@ -4,8 +4,7 @@ import { type projectType } from '../home/ProjectCard'
 import { useEffect }        from 'react'
 import { getProjects }      from '../../middleware/supabaseClient'
 
-/** name= project_type || tag */
-type filterType       = {type: string, value:string}
+/** filter configuration */
 type filterConfigType = {classFilter: string, tagFilter: string}
 export default function ProjectSection() {
   

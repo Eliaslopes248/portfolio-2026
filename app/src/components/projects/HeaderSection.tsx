@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function HeaderSection() {
   return (
     <header className="mb-16">

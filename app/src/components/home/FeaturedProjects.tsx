@@ -1,8 +1,7 @@
-import React, { useEffect }            from 'react'
-import ProjectCard      from './ProjectCard'
-import BOILR_THUMNAIL   from "../../assets/projects/boilr-thumbnail.png"
-import { getProjects }  from '../../middleware/supabaseClient'
-import { useLocalStorage } from 'usehooks-ts'
+import { useEffect }            from 'react'
+import ProjectCard              from './ProjectCard'
+import { getProjects }          from '../../middleware/supabaseClient'
+import { useLocalStorage }      from 'usehooks-ts'
 
 /** type for project schema */
 type projectType = {
