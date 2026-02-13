@@ -107,8 +107,7 @@ export default function FeaturedProjects() {
           {projects && projects.length > 0
             ? (() => {
                 const featured = projects.filter((p) => p.featured === true);
-                const toShow = featured.length > 0 ? featured.slice(0, 3) : projects.slice(0, 3);
-                return toShow.map((project) => (
+                return featured.map((project) => (
                   <ProjectCard
                     key={project.project_name}
                     project={{
