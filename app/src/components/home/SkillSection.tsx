@@ -13,11 +13,11 @@ const MARQUEE_SKILLS: Skill[] = [
   { name: 'C++ / C',     alt: 'C++',         src: 'https://cdn.simpleicons.org/cplusplus/00599C' },
   { name: 'Kubernetes',  alt: 'Kubernetes',  src: 'https://cdn.simpleicons.org/kubernetes/326CE5' },
   { name: 'Docker',      alt: 'Docker',      src: 'https://cdn.simpleicons.org/docker/2496ED' },
-  { name: 'AWS Cloud',   alt: 'AWS',         src: 'https://cdn.simpleicons.org/amazonaws' },
+  { name: 'AWS Cloud',   alt: 'AWS',         src: 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000' },
 ]
 /** skills in grid */
 const GRID_SKILLS: Skill[] = [
-  { name: 'AWS Cloud',      alt: 'AWS',           src: 'https://cdn.simpleicons.org/amazonaws' },
+  { name: 'AWS Cloud',      alt: 'AWS',           src: 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000' },
   { name: 'Docker',         alt: 'Docker',        src: 'https://cdn.simpleicons.org/docker/2496ED' },
   { name: 'React.js',       alt: 'React',         src: 'https://cdn.simpleicons.org/react/61DAFB' },
   { name: 'Node.js',        alt: 'Node.js',       src: 'https://cdn.simpleicons.org/nodedotjs/339933' },
@@ -25,7 +25,7 @@ const GRID_SKILLS: Skill[] = [
   { name: 'Git',            alt: 'Git',           src: 'https://cdn.simpleicons.org/git/F05032', invert: true },
   { name: 'C++ / C',        alt: 'C++',           src: 'https://cdn.simpleicons.org/cplusplus/00599C' },
   { name: 'Linux & Bash',   alt: 'Linux',         src: 'https://cdn.simpleicons.org/linux/FCC624' },
-  { name: 'Java',           alt: 'Java',          src: 'https://cdn.simpleicons.org/java' },
+  { name: 'Java',           alt: 'Java',          src: 'https://img.icons8.com/?size=100&id=13679&format=png&color=000000' },
   { name: 'Spring Boot',    alt: 'Spring Boot',   src: 'https://cdn.simpleicons.org/springboot/6DB33F' },
   { name: 'Tailwind CSS',   alt: 'Tailwind CSS',  src: 'https://cdn.simpleicons.org/tailwindcss' },
   { name: 'Firebase',       alt: 'Firebase',      src: 'https://cdn.simpleicons.org/firebase' },
