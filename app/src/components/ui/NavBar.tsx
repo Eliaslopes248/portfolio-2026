@@ -73,6 +73,8 @@ export default function NavBar() {
                             {o.name}
                         </a>
                     ))}
+                     <a onClick={downloadResume} 
+                     className="nav-link w-full text-center text-4xl font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#">Resume</a>
                 </div>
             </div>
         </nav>

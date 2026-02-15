@@ -144,7 +144,7 @@ export default function FeaturedProjects() {
               ))}
         </div>
       </div>
-      <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 -z-0"></div>
+      <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 z-0"></div>
     </section>
   )
 }
