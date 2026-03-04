@@ -72,7 +72,7 @@ const FEATURED_PROJECTS: projectType[] = [
 
 /** cache constants */
 const PROJECTS_CACHE_KEY = "projects";
-const CACHE_TTL_MS = 1000 * 10;
+//const CACHE_TTL_MS = 1000 * 10;
 
 // function setProjectsCache(key: string, data: projectType[], ttlMs: number): void {
 //   const cached: projectsCacheType = {

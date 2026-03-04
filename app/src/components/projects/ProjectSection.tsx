@@ -10,7 +10,7 @@ import useCache from '../hooks/UseCache'
 /** filter configuration */
 type filterConfigType = {classFilter: string, tagFilter: string}
 const PROJECTS_CACHE_KEY = "projects";
-const CACHE_TTL_MS = 1000 * 10;
+//const CACHE_TTL_MS = 1000 * 10;
 
 export default function ProjectSection() {
 
@@ -61,7 +61,7 @@ export default function ProjectSection() {
       const data = await getProjects();
       if (cancelled || !data) return;
       // cache data in local storage
-      setCachedData(PROJECTS_CACHE_KEY, data, CACHE_TTL_MS);
+      setCachedData(PROJECTS_CACHE_KEY, data);
       // update useState
       setProjects(getCachedData(PROJECTS_CACHE_KEY));
     })();
