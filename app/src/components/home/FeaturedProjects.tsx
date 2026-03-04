@@ -115,7 +115,7 @@ export default function FeaturedProjects() {
     // check if item is cached
     const cached: cacheItemType | null = getCachedData(PROJECTS_CACHE_KEY);
     // if found then set the data
-    if (cached && cached.data.length > 0) {
+    if (cached && Array.isArray(cached.data) && cached.data.length > 0) {
       setProjects(cached);
       return;
     }

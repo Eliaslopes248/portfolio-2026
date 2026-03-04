@@ -1,5 +1,6 @@
 
 import { createClient }     from '@supabase/supabase-js'
+import type { projectType } from '../components/home/ProjectCard';
 const supabaseUrl           = import.meta.env.VITE_SUPABASE_URL || null;
 const supabaseKey           = import.meta.env.VITE_ANON_KEY || null;
 let supabaseClient:any      = null;

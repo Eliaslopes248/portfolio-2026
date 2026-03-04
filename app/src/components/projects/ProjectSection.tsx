@@ -49,7 +49,7 @@ export default function ProjectSection() {
     // check if item is cached
     const cached = getCachedData(PROJECTS_CACHE_KEY);
     // if found then set the data
-    if (cached && cached.data.length > 0) {
+    if (cached && Array.isArray(cached.data) && cached.data.length > 0) {
       setProjects(cached);
       return;
     }
@@ -69,7 +69,7 @@ export default function ProjectSection() {
 
   /** derive filter options whenever projects change */
   useEffect(() => {
-    if (!projects || projects.data.length === 0) return;
+    if (!projects || !Array.isArray(projects.data) || projects.data.length === 0) return;
 
     const typeSet = new Set<string>(["ALL"]);
     const tagSet  = new Set<string>(["ALL"]);
@@ -105,7 +105,7 @@ export default function ProjectSection() {
 
   /** filter algorithm: derive list of projects from current filter config */
   const filteredProjects: projectType[] = React.useMemo(() => {
-    if (!projects || projects.data.length === 0) return [];
+    if (!projects || !Array.isArray(projects.data) || projects.data.length === 0) return [];
 
     return projects.data.filter((proj:projectType) => {
       const classMatch =
