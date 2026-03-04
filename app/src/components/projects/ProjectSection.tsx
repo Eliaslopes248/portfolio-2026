@@ -1,5 +1,4 @@
 import React from 'react'
-import { useLocalStorage }  from 'usehooks-ts'
 import { type projectType } from '../home/ProjectCard'
 import { useEffect }        from 'react'
 import { getProjects }      from '../../middleware/supabaseClient'
