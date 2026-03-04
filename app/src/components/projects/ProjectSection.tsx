@@ -3,13 +3,24 @@ import { useLocalStorage }  from 'usehooks-ts'
 import { type projectType } from '../home/ProjectCard'
 import { useEffect }        from 'react'
 import { getProjects }      from '../../middleware/supabaseClient'
+import type { cacheItemType } from '../hooks/UseCache'
+import useCache from '../hooks/UseCache'
+
 
 /** filter configuration */
 type filterConfigType = {classFilter: string, tagFilter: string}
+const PROJECTS_CACHE_KEY = "projects";
+const CACHE_TTL_MS = 1000 * 10;
+
 export default function ProjectSection() {
-  
-  const [projects, setProjects]         = useLocalStorage<projectType[] | null>("projects", null);
-  const [filterConfig, setFilterConfig] = React.useState<filterConfigType>({
+
+  // web hook made for caching
+  const { getCachedData, setCachedData } = useCache();
+  // set to cache value
+  const [projects, setProjects]         = React.useState<cacheItemType | null>(()=>{ return getCachedData(PROJECTS_CACHE_KEY); });
+  //const [projects, setProjects]         = useLocalStorage<projectType[] | null>("projects-catalog", null);
+  const [filterConfig, setFilterConfig] = React.useState<filterConfigType>(
+  {
     classFilter: "ALL",
     tagFilter: "ALL",
   });
@@ -36,30 +47,36 @@ export default function ProjectSection() {
 
   /** fetch the projects (cache-aware) */
   useEffect(() => {
-    if (projects && projects.length > 0) {
-      console.log("Projects cached!");
+    // check if item is cached
+    const cached = getCachedData(PROJECTS_CACHE_KEY);
+    // if found then set the data
+    if (cached && cached.data.length > 0) {
+      setProjects(cached);
       return;
     }
-
-    async function fetch() {
+    // data is not cached, so must fetch from server
+    let cancelled = false;
+    (async () => {
+      // request project data
       const data = await getProjects();
-      if (data) {
-        setProjects(data);
-      }
-    }
-
-    fetch();
+      if (cancelled || !data) return;
+      // cache data in local storage
+      setCachedData(PROJECTS_CACHE_KEY, data, CACHE_TTL_MS);
+      // update useState
+      setProjects(getCachedData(PROJECTS_CACHE_KEY));
+    })();
+    return () => { cancelled = true; };
   }, []);
 
   /** derive filter options whenever projects change */
   useEffect(() => {
-    if (!projects || projects.length === 0) return;
+    if (!projects || projects.data.length === 0) return;
 
     const typeSet = new Set<string>(["ALL"]);
     const tagSet  = new Set<string>(["ALL"]);
 
-    for (let i = 0; i < projects.length; i++) {
-      const proj = projects[i];
+    for (let i = 0; i < projects.data.length; i++) {
+      const proj = projects.data[i];
       typeSet.add(proj.project_type);
 
       const projTags = getProjectTags(proj);
@@ -71,9 +88,6 @@ export default function ProjectSection() {
     setProjTypes(Array.from(typeSet));
     setTags(Array.from(tagSet));
   }, [projects]);
-
-  // debug
-  useEffect(()=>{console.log("projs:", projects)},[projects]);
 
   /** handlers to update filter config (single-select per group) */
   function handleClassFilterChange(value: string) {
@@ -92,9 +106,9 @@ export default function ProjectSection() {
 
   /** filter algorithm: derive list of projects from current filter config */
   const filteredProjects: projectType[] = React.useMemo(() => {
-    if (!projects || projects.length === 0) return [];
+    if (!projects || projects.data.length === 0) return [];
 
-    return projects.filter((proj) => {
+    return projects.data.filter((proj:projectType) => {
       const classMatch =
         filterConfig.classFilter === "ALL" ||
         proj.project_type === filterConfig.classFilter;

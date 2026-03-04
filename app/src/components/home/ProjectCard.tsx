@@ -46,7 +46,7 @@ export default function ProjectCard({ project }: { project: projectType }) {
           />
           <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
-        <div className="p-8 flex flex-col flex-grow">
+        <div className="p-8 flex flex-col grow">
           {/* tags */}
           <div className="flex gap-2 mb-4 w-full flex-wrap">
             <span className="text-[10px] font-bold px-2 py-1 border border-emerald-500/20 text-emerald-400 uppercase">

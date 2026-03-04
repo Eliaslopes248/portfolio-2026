@@ -1,7 +1,8 @@
-import { useEffect }            from 'react'
-import ProjectCard              from './ProjectCard'
-import { getProjects }          from '../../middleware/supabaseClient'
-import { useLocalStorage }      from 'usehooks-ts'
+import React, { useEffect } from 'react'
+import ProjectCard from './ProjectCard'
+import { getProjects } from '../../middleware/supabaseClient'
+import type { cacheItemType } from '../hooks/UseCache'
+import useCache from '../hooks/UseCache'
 
 /** type for project schema */
 type projectType = {
@@ -16,6 +17,11 @@ type projectType = {
   propriotary:        string // PUBLIC or PROPRIETARY
   featured:           boolean | null
 }
+
+// type projectsCacheType = {
+//   projects:     projectType[],
+//   expireTime:   number
+// };
 
 /** featured projects data */
 const FEATURED_PROJECTS: projectType[] = [
@@ -64,30 +70,68 @@ const FEATURED_PROJECTS: projectType[] = [
 ]
 
 
+/** cache constants */
+const PROJECTS_CACHE_KEY = "projects";
+const CACHE_TTL_MS = 1000 * 10;
+
+// function setProjectsCache(key: string, data: projectType[], ttlMs: number): void {
+//   const cached: projectsCacheType = {
+//     projects: data,
+//     expireTime: Date.now() + ttlMs,
+//   };
+//   localStorage.setItem(key, JSON.stringify(cached));
+// }
+
+// function getProjectsCache(key: string): projectsCacheType | null {
+//   const raw = localStorage.getItem(key);
+//   if (!key || !raw) return null;
+//   try {
+//     const data = JSON.parse(raw) as projectsCacheType;
+//     if (Date.now() > data.expireTime) {
+//       localStorage.removeItem(key);
+//       return null;
+//     }
+//     if (!Array.isArray(data.projects)) {
+//       localStorage.removeItem(key);
+//       return null;
+//     }
+//     return data;
+//   } catch {
+//     localStorage.removeItem(key);
+//     return null;
+//   }
+// }
 
 export default function FeaturedProjects() {
 
-  /** projects */
-  //const [projects, setProjects] = React.useState<projectType[]>([]);
-  const [projects, setProjects] = useLocalStorage<projectType[] | null>("projects", null);
-  /** fetch the projects */
-  useEffect(()=>{
-    /** check cache first */
-    if (projects && projects.length > 0){
-      console.log("Projects cahced!");
+  // const [projects, setProjects] = React.useState<cacheItemType | null>(() =>
+  //   getProjectsCache(PROJECTS_CACHE_KEY)
+  // );
+
+  const { setCachedData, getCachedData } = useCache();
+  const [projects, setProjects] = React.useState<cacheItemType | null>(()=>{ return getCachedData(PROJECTS_CACHE_KEY); });
+
+  useEffect(() => {
+    // check if item is cached
+    const cached = getCachedData(PROJECTS_CACHE_KEY);
+    // if found then set the data
+    if (cached && cached.data.length > 0) {
+      setProjects(cached);
       return;
     }
-    /** fetch projects */
-    async function fetch(){
-        const data = await getProjects();
-        setProjects(data);
-    }
-
-    fetch(); 
-
+    // data is not cached, so must fetch from server
+    let cancelled = false;
+    (async () => {
+      // request project data
+      const data = await getProjects();
+      if (cancelled || !data) return;
+      // cache data in local storage
+      setCachedData(PROJECTS_CACHE_KEY, data);
+      // update useState
+      setProjects(getCachedData(PROJECTS_CACHE_KEY));
+    })();
+    return () => { cancelled = true; };
   }, []);
-
-  //useEffect(()=>{console.log("projs:", projects)},[projects]);
 
 
   return (
@@ -104,9 +148,12 @@ export default function FeaturedProjects() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects && projects.length > 0
+          {projects && Array.isArray(projects.data) && projects.data.length > 0
             ? (() => {
-                const featured = projects.filter((p) => p.featured === true);
+                // get the projects only
+                const list:     projectType[]   = projects.data;
+                // filter to only when featured is TRUE
+                const featured: projectType[]   = list? list.filter((p) => p.featured === true) : [];
                 return featured.map((project) => (
                   <ProjectCard
                     key={project.project_name}
