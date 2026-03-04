@@ -113,7 +113,7 @@ export default function FeaturedProjects() {
 
   useEffect(() => {
     // check if item is cached
-    const cached = getCachedData(PROJECTS_CACHE_KEY);
+    const cached: cacheItemType | null = getCachedData(PROJECTS_CACHE_KEY);
     // if found then set the data
     if (cached && cached.data.length > 0) {
       setProjects(cached);
