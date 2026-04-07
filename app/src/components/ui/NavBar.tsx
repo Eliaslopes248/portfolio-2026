@@ -7,6 +7,7 @@ export default function NavBar() {
     const navOptionList: navOptions[] = [
         { name: "Home",     link: "/" },
         { name: "Projects", link: "/projectCatalog" },
+        { name: "Github", link: "https://github.com/Eliaslopes248?tab=repositories" },
         // Always jump to the footer contact section on the root page
         // { name: "Contact",  link: "/#contact" },
     ];
