@@ -63,11 +63,11 @@ export default function NavBar() {
                 className="md:hidden overflow-hidden transition-[max-height] duration-300 ease-out"
                 style={{ maxHeight: menuOpen ? 300 : 0 }}
             >
-                <div className="w-full justify-center flex flex-col bg-black min-h-[300px] gap-12 py-6 px-6">
+                <div className="w-full flex flex-col items-start bg-black min-h-fit gap-12 py-6 px-6">
                     {navOptionList.map((o, i) => (
                         <a
                             key={i}
-                            className="nav-link w-full text-center text-4xl font-medium tracking-widest uppercase opacity-70 hover:opacity-100"
+                            className="text-[13px] nav-link w-full text-left text-4xl font-medium tracking-widest uppercase opacity-70 hover:opacity-100"
                             href={o.link}
                             onClick={() => setMenuOpen(false)}
                         >
@@ -75,7 +75,7 @@ export default function NavBar() {
                         </a>
                     ))}
                      <a onClick={downloadResume} 
-                     className="nav-link w-full text-center text-4xl font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#">Resume</a>
+                     className="text-[13px] nav-link w-full text-left text-4xl font-medium tracking-widest uppercase opacity-70 hover:opacity-100" href="#">Resume</a>
                 </div>
             </div>
         </nav>
